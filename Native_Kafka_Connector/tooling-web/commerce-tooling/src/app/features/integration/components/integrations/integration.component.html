@@ -1,0 +1,137 @@
+<!--
+*-------------------------------------------------------------------
+* Licensed Materials - Property of HCL Technologies
+*
+* HCL Commerce
+*
+* (C) Copyright HCL Technologies Limited 1996, 2020
+
+*-------------------------------------------------------------------
+-->
+
+<div>
+	<h1 class="hc-type-h1">
+		<!-- {{'TRANSPORTS.TRANSPORTS' | translate}} -->
+		Integration
+	</h1>
+	<div class="hc-stepper-section hc-paper">
+		<div class="hc-stepper-actions">
+			<h2 class="hc-type-h2">
+				<!-- {{'MESSAGES.RESEND_MESSAGE' | translate}} -->
+				Kafka Connector
+			</h2>
+			<div>
+				<button class="mat-flat-button mat-primary" (click)="submit('configrationFormGroup')" style="margin-right: 5px" [disabled]="!kafkaFromGroup.valid || singleRequestData.length == 0">Submit</button>
+				<button class="mat-icon-button-label" matTooltip="{{'MESSAGE_TYPES.REFRESH' | translate}}" mat-icon-button (click)="refreshPage()">
+					<mat-icon color="primary">refresh</mat-icon>
+				</button>
+			</div>
+		</div>
+		<div class="loader-section" *ngIf="showLoader">
+			<mat-spinner></mat-spinner>
+		</div>
+		<div fxLayout>
+	<section class="hc-panel-main hc-border-right" fxLayout="column" fxLayoutGap="16px" fxFlex>
+		<mat-vertical-stepper [linear]="false" #stepper>
+			<ng-template matStepperIcon="edit">
+				<mat-icon>check</mat-icon>
+			</ng-template>
+			<mat-step [stepControl]="configrationFormGroup">
+				<form [formGroup]="configrationFormGroup">
+					<ng-template matStepLabel>Configration</ng-template>
+					<mat-form-field appearance="outline" class="icon-suffix">
+						<mat-label>Host</mat-label>
+						<input matInput placeholder="Enter Host Number" formControlName="host" required (change)="updateConfigration($event.target.value,'host')">
+					</mat-form-field>
+					<mat-form-field appearance="outline" class="icon-suffix">
+						<mat-label>Port</mat-label>
+						<input matInput placeholder="Enter Post Number" formControlName="port" required (change)="updateConfigration($event.target.value,'port')">
+					</mat-form-field>
+					<mat-form-field appearance="outline" class="icon-suffix">
+						<mat-label>User Name</mat-label>
+						<input matInput placeholder="Enter User Name" formControlName="username" (change)="updateConfigration($event.target.value,'username')">
+					</mat-form-field>
+					<mat-form-field appearance="outline" class="icon-suffix">
+						<mat-label>Password</mat-label>
+						<input matInput type="password" placeholder="Enter you Password" formControlName="password" (change)="updateConfigration($event.target.value,'password')">
+					</mat-form-field>
+					<div class="hc-steper-btn-margin">
+						<button matStepperNext class="mat-flat-button mat-primary">Next</button>
+					</div>
+				</form>
+			</mat-step>
+			<mat-step [stepControl]="consumersFormGroup">
+				<form [formGroup]="consumersFormGroup">
+					<ng-template matStepLabel>Consumers</ng-template>
+					<div class="mat-checkbox-section">
+						<p *ngFor="let field of consumersFormGroup.value  | keyvalue">
+							<mat-checkbox [formControlName]="field.key" color="primary" style="text-transform: capitalize;"
+								(change)="updateConfigration($event.checked,field.key, 'consumers')"> {{field.key}}</mat-checkbox>
+								<a (click)="showConsumerForm(field.key)" style ="position: relative;bottom: 30px;left: 90px;"><span class="material-icons">edit</span></a>
+
+							</p>
+					</div>
+					<div class="hc-steper-btn-margin">
+						<button matStepperPrevious class="mat-flat-button">Back</button>
+						<button matStepperNext class="mat-flat-button mat-primary">Next</button>
+					</div>
+				</form>
+			</mat-step>
+			<mat-step [stepControl]="producersFromGroup">
+				<form [formGroup]="producersFromGroup">
+					<ng-template matStepLabel>Producers</ng-template>
+					<div class="mat-checkbox-section">
+						<p *ngFor="let field of producersFromGroup.value  | keyvalue">
+							<mat-checkbox [formControlName]="field.key" color="primary" style="text-transform: capitalize;"
+								(change)="updateConfigration($event.checked,field.key,'producers')"> {{field.key}}</mat-checkbox>
+						</p>
+					</div>
+					<div class="hc-steper-btn-margin">
+						<button matStepperPrevious class="mat-flat-button">Back</button>
+						<button matStepperNext class="mat-flat-button mat-primary">Next</button>
+					</div>
+				</form>
+			</mat-step>
+			<mat-step>
+				<ng-template matStepLabel>Done</ng-template>
+				<p>You are now done.</p>
+				<div>
+					<button matStepperPrevious class="mat-flat-button">Back</button>
+					<button (click)="cancel(stepper.reset())" class="mat-flat-button mat-primary" id="restButton">Reset</button>
+				</div>
+			</mat-step>
+		</mat-vertical-stepper>
+	</section>
+		<section class="hc-panel-side" *ngIf="displayConsumerForm" fxFlex="40" fxFlex.gt-sm="30" fxFlex.gt-md="25" fxFlex.gt-lg="20" fxFlex.gt-xl="20">
+			<h2 class="hc-type-h2" id="id7">
+				{{consumerEditKey | titlecase}} Consumer Configuration
+			</h2><br>
+			<form [formGroup]="consumerEditFormGroup">
+				<ng-template matStepLabel>Configration</ng-template>
+				<mat-form-field appearance="outline" class="icon-suffix">
+					<mat-label>Host</mat-label>
+					<input matInput placeholder="Enter Host Number" formControlName="host" required (change)="updateConfigration($event.target.value,'host','consumerEdit')">
+				</mat-form-field>
+				<mat-form-field appearance="outline" class="icon-suffix">
+					<mat-label>Port</mat-label>
+					<input matInput placeholder="Enter Post Number" formControlName="port" required (change)="updateConfigration($event.target.value,'port','consumerEdit')">
+				</mat-form-field>
+				<mat-form-field appearance="outline" class="icon-suffix">
+					<mat-label>User Name</mat-label>
+					<input matInput placeholder="Enter User Name" formControlName="username" (change)="updateConfigration($event.target.value,'username','consumerEdit')">
+				</mat-form-field>
+				<mat-form-field appearance="outline" class="icon-suffix">
+					<mat-label>Password</mat-label>
+					<input matInput type="password" placeholder="Enter you Password" formControlName="password" (change)="updateConfigration($event.target.value,'password','consumerEdit')">
+				</mat-form-field>
+				
+			</form>
+			<br><div>
+				<button class="mat-flat-button mat-primary" (click)="submit('consumerEditFormGroup')" style="margin-right: 5px" [disabled]="!kafkaFromGroup.valid || singleRequestConsumerData.length == 0">Submit</button>
+				<button class="mat-flat-button mat-primary" (click)="closeConsumerForm()" style="margin-right: 5px">Close</button>
+
+			</div>
+		</section>
+		</div>
+	</div>
+</div>

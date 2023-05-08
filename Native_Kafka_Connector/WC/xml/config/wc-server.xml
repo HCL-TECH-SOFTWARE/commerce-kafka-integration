@@ -1,0 +1,5 @@
+<config>
+<Registries>
+  <registry name="KafkaConsumerRegistry" regClassName="com.hcl.commerce.kafka.consumer.KafkaConsumerRegistry"/>
+</Registries>
+</config>

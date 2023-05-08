@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package extends="wcs-stores" name="stores-custom" namespace="/">
+        <action class="com.ibm.commerce.struts.v2.BaseAction" name="KafkaConsumer22">
+            <param name="authenticate">0:0</param>
+            <param name="https">0:1</param>
+            <param name="parameter">com.hcl.commerce.kafka.consumer.KafkaConsumerCmd</param>
+        </action>
+    </package>
+</struts>

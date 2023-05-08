@@ -1,0 +1,40 @@
+/*
+ *-------------------------------------------------------------------
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
+ * (C) Copyright HCL Technologies Limited 1996, 2020
+
+ *-------------------------------------------------------------------
+ */
+
+ .mat-checkbox-section {
+	margin: 12px 0;
+	mat-checkbox {
+		margin-bottom: 5px;
+	}
+ }
+
+.loader-section{
+	position: absolute;
+    z-index: 1;
+    background: rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hc-steper-btn-margin {
+	margin-top: 10px;
+}
+
+.hc-stepper-section {
+	position: relative;
+}
+
+

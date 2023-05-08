@@ -1,0 +1,21 @@
+<Definitions>
+<!---
+		Submenu items for System Administration.
+	-->
+	<BaseApplicationMenuItems definitionName="cmc/shell/SystemAdministrationMenuItems" package="cmc/shell">
+		<dependency localName="shellResources" moduleName="cmc/shell/ShellResources"/>
+
+<!---
+			Application menu item for opening the Integrations Management tool.
+		-->
+		<ApplicationMenuItem actionName="openBusinessObjectEditor" displayName="${shellResources.integrationsManagementDisplayName}" id="integrationsManagement" package="cmc/shell" toolDefinition="cmc/integrations/IntegrationsManagement">
+			<EnablementAndCondition>
+				<DarkFeatureEnablementCondition featureName="integrationsManagement"/>
+				<EnablementOrCondition>
+					<EnablementCondition contextName="siteAdministrator" enablementValue="true"/>
+				</EnablementOrCondition>
+			</EnablementAndCondition>
+		</ApplicationMenuItem>
+		
+</BaseApplicationMenuItems>
+</Definitions>

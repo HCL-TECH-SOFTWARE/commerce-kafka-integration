@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ =================================================================
+  Licensed Materials - Property of HCL Technologies
+
+  HCL Commerce
+
+  (C) Copyright HCL Technologies Limited 1996, 2020
+
+ =================================================================
+--><_config:DevelopmentComponentConfiguration xmlns:_config="http://www.ibm.com/xmlns/prod/commerce/foundation/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/xmlns/prod/commerce/foundation/config ../xsd/wc-component.xsd">
+
+<_config:extendedconfiguration>
+	<_config:configgrouping name="kafkaConfig">
+		<_config:property name="com.hcl.kafka.consumer.inventory.topic" value="HCLC_INV"/>
+		<_config:property name="com.hcl.kafka.producer.order.topic" value="HCLC_ORDER"/>
+		<_config:property name="enableRestCall" value="true"/>
+		<_config:property name="enableJdbcCall" value="false"/>
+	</_config:configgrouping>
+	<_config:configgrouping name="RestConfig">
+		<_config:property name="username" value="wcsadmin"/>
+		<_config:property name="password" value="BiJRGDv39K6N85I4ANQpmrf5WwR/DCGOUuq6Uw5OeX4="/>
+	</_config:configgrouping>
+	<_config:configgrouping name="SchedulerConfig">
+		<_config:property name="com.hcl.kafka.consumer.inventory.topic" value="HCLC_INV_SCH"/>
+	</_config:configgrouping>
+</_config:extendedconfiguration>
+
+</_config:DevelopmentComponentConfiguration>

@@ -1,0 +1,2 @@
+INSERT INTO WCS.STORECONF(STOREENT_ID, NAME, VALUE, OPTCOUNTER) VALUES(0, 'kafka.producer.orderitemadd', 'true', 1);
+INSERT INTO WCS.STORECONF(STOREENT_ID, NAME, VALUE, OPTCOUNTER) VALUES(0, 'kafka.consumer.inventory', 'true', 1);
